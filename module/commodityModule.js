@@ -12,16 +12,16 @@ const CommoditySchema = mongoose.Schema({
         type: String,
         required: true
     },
-    revisionNumber: {
-        type: Number,
-        required: true,
-        validate: {
-            validator: function(value) {
-                return value > 0; // Revision number cannot be zero
-            },
-            message: props => `${props.value} is not a valid revision number. Revision number must be greater than zero.`
-        }
-    },
+    // revisionNumber: {
+    //     type: Number,
+    //     required: true,
+    //     validate: {
+    //         validator: function(value) {
+    //             return value > 0; // Revision number cannot be zero
+    //         },
+    //         message: props => `${props.value} is not a valid revision number. Revision number must be greater than zero.`
+    //     }
+    // },
     revisionDate: {
         type: Date,
         default: Date.now

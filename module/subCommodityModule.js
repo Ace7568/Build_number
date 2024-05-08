@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const subcommoditySchema = mongoose.Schema({
-    code: {
+    subcommodity: {
         type: String,
         required: true,
         maxlength: 1,
@@ -11,7 +11,6 @@ const subcommoditySchema = mongoose.Schema({
     CrossEntry: [{
             index : Number,
             Definition: String,
-            revisionNumber: Number,
             revisedBy: String
         }]
     
@@ -24,8 +23,6 @@ module.exports = {
     createEmpty : (field) => {
         const subcommmodity = new subcommodityCollection(field)
         return subcommmodity.save()
-    },
-
-    searchIndex: (index) => subcommodityCollection.findOne({CrossEntry: {$element: { index : index}}}),
+    }
 
 }

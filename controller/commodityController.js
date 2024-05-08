@@ -7,18 +7,19 @@ module.exports= {
         commodityModule.commodityCollection.findOne({ code: commodityContent.code }).sort({ _id: -1 }).limit(1)
         .then((prev) => {
             if(prev){
-                commodityContent.revisionNumber = prev.revisionNumber + 1;
-                return commodityModule.addCommodity(commodityContent)
-                .then((data)=>{
-                    res.redirect('/')
-                })
+                // commodityContent.revisionNumber = prev.revisionNumber + 1;
+                // return commodityModule.addCommodity(commodityContent)
+                // .then((data)=>{
+                //     res.redirect('/')
+                // })
+                res.send({status:"Already Present Commodity"})
             }
             else{
-                commodityContent.revisionNumber = 1;
+                // commodityContent.revisionNumber = 1;
                 return commodityModule.addCommodity(commodityContent)
                 .then((data)=>{
                     const field = {
-                        code : commodityContent.code,
+                        subcommodity : commodityContent.code,
                         CrossEntry : []
                     }
                     subCommodityModule.createEmpty(field)

@@ -1,22 +1,25 @@
 const mongoose = require('mongoose')
 
 const partNumberSchema = mongoose.Schema({
-    code: {
+    code_header: {
         type: String,
         required: true,
         maxlength: 1,
         minlength: 1,
         match: /^[A-Z]$/ // Ensures that the code is a single uppercase letter
     },
-    index: {
+    code_Commodity: {
+        type: String,
+        required: true,
+        maxlength: 1,
+        minlength: 1,
+        match: /^[A-Z]$/ // Ensures that the code is a single uppercase letter
+    },
+    code_SubCommodity: {
         type: Number,
         required: true,
-        validate: {
-            validator: function(value) {
-                return (value > 0 && value < 101); // Revision number cannot be zero
-            },
-            message: props => `${props.value} is not a valid revision number. Revision number must be greater than zero.`
-        }
+        maxlength: 2,
+        minlength: 1,
     },
     CrossEntry: [{
         index : Number,

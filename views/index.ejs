@@ -61,10 +61,10 @@
                     <label for="code">B2 Code:</label>
                     <input type="text" id="code" name="code" class="border-2 rounded-sm" required maxlength="1" minlength="1" pattern="[A-Z]" title="Please enter a single uppercase letter">
                 </div>
-                <div class="form-group">
-                    <label for="index">SubCommodity No:</label>
-                    <input type="number" id="index" name="index" class="border-2 rounded-sm" required title="Please enter a single uppercase letter" max="100">
-                </div>
+                <!-- <div class="form-group">
+                    <label for="Subcommodity">SubCommodity No:</label>
+                    <input type="number" id="subCommodity" name="subCommodity" class="border-2 rounded-sm" required title="Please enter a single uppercase letter" max="100">
+                </div> -->
                 <div class="form-group">
                     <label for="Definition">Definition:</label>
                     <input type="text" id="Definition" name="Definition" class="border-2 rounded-sm" title="Please enter a Definition">
@@ -83,17 +83,22 @@
             <h5 class="card-title mb-[4vh]">Add part Numbers</h5>
             <form action="/createpartNumber" method="POST" class="flex flex-col gap-[2vh]">
                 <div class="form-group">
+                    <label for="code">B1 Code:</label>
+                    <input type="text" id="code" name="header" class="border-2 rounded-sm" required maxlength="1" minlength="1" pattern="[A-Z]" title="Please enter a single uppercase letter">
+                </div>
+                
+                <div class="form-group">
                     <label for="code">B2 Code:</label>
-                    <input type="text" id="code" name="code" class="border-2 rounded-sm" required maxlength="1" minlength="1" pattern="[A-Z]" title="Please enter a single uppercase letter">
+                    <input type="text" id="code" name="Commodity" class="border-2 rounded-sm" required maxlength="1" minlength="1" pattern="[A-Z]" title="Please enter a single uppercase letter">
                 </div>
                 <div class="form-group">
                     <label for="index">SubCommodity No:</label>
-                    <input type="number" id="SubCommodity_No" name="SubCommodity_No" class="border-2 rounded-sm" required title="Please enter a single uppercase letter" max="99">
+                    <input type="number" id="SubCommodity_No" name="subCommodity" class="border-2 rounded-sm" required title="Please enter a single uppercase letter" max="99">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="index">Part No:</label>
                     <input type="number" id="Part_No" name="Part_No" class="border-2 rounded-sm" required title="Please enter a single uppercase letter" max="999">
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="Definition">Definition:</label>
                     <input type="text" id="Definition" name="Definition" class="border-2 rounded-sm" title="Please enter a Definition">
