@@ -19,11 +19,21 @@ module.exports= {
                 // headerContent.revisionNumber = 1;
                 return headerModule.addHeader(headerContent)
                 .then((data)=>{
-                    res.redirect('/')
+                    res.send({status:"Header Added Successfully"})
                 })
             }
         })
 
         
+    },
+    getHeaderDetails: (req, res) => {
+        headerModule.headerCollection.find({})
+            .then((headers) => {
+                res.send(headers);
+            })
+            .catch((error) => {
+                console.error("Error fetching header details:", error);
+                res.status(500).send({ error: "Internal Server Error" });
+            });
     }
 }

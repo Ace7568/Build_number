@@ -25,7 +25,7 @@ module.exports= {
                     subCommodityModule.createEmpty(field)
                     .then(()=>{
                         console.log("subCommodity Created Succesfully")
-                        res.redirect('/')
+                        res.send({status:"subCommodity Created Succesfully"})
                     })
                     .catch((err) => {
                         console.log(err)
@@ -39,5 +39,19 @@ module.exports= {
         })
 
         
+    },
+    getCommodityDetails: (req, res) => {
+        commodityModule.commodityCollection.find()
+            .then((commodities) => {
+                if (commodities && commodities.length > 0) {
+                    res.send(commodities);
+                } else {
+                    res.status(404).send({ error: "No commodities found" });
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching commodity details:", error);
+                res.status(500).send({ error: "Internal Server Error" });
+            });
     }
 }

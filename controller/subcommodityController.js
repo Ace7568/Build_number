@@ -4,10 +4,22 @@ const subcommodityModule = require('../module/subCommodityModule');
 module.exports = {
     addSubCommodity: (req, res) => {
         const subcommodityContent = req.body;
+        console.log(subcommodityContent)
         // const index = parseInt(subcommodityContent.subCommodity); 
-        subcommodityModule.subcommodityCollection.findOne({ code: subcommodityContent.subCommodity })
+        subcommodityModule.subcommodityCollection.findOne({ subcommodity: subcommodityContent.code })
             .then((data) => {
                 if (data) {
+                    if(data.subcommodity === 'F'){
+                        const final = {
+                            index : 0,
+                            Definition : subcommodityContent.Definition,
+                            revisedBy : subcommodityContent.revisedBy
+                        }
+                        data.CrossEntry = [final];
+                        data.save();
+                        return res.status(200).send("Final Subcommodity is created");
+                    }
+                    console.log(data)
                     if (data.CrossEntry.length > 100) {
                         // Old Data Is Being Modified
                         // data.CrossEntry[index-1].Definition = subcommodityContent.Definition;
@@ -43,11 +55,26 @@ module.exports = {
             })
             .then(() => {
                 console.log("CrossEntry updated or added successfully");
-                res.status(200).send("CrossEntry updated or added successfully");
+                res.status(200).send({status:"CrossEntry updated or added successfully"});
             })
             .catch((err) => {
                 console.error("Error:", err.message);
-                res.status(500).send("Internal Server Error");
+                res.status(500).send({status:"Error: " +  err.message});
+            });
+    },
+    getSubCommodity: (req, res) => {
+        const subcommodityCode = req.body.code;
+        subcommodityModule.subcommodityCollection.findOne({ subcommodity: subcommodityCode })
+            .then((subcommodity) => {
+                if (subcommodity) {
+                    res.send(subcommodity.CrossEntry);
+                } else {
+                    res.status(404).send({ error: "Subcommodity not found" });
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                res.status(500).send({ error: "Internal Server Error" });
             });
     }
 };
